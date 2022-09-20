@@ -18,5 +18,8 @@ namespace Labb1MVC_V3.Models
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
         public DateTime LoanDate { get; set; } = DateTime.Now;
+
+        public DateTime ReturnDate { get; set; } = DateTime.Now.AddDays(30);
+        
     }
 }

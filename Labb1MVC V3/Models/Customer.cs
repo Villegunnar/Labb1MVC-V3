@@ -23,5 +23,7 @@ namespace Labb1MVC_V3.Models
         [StringLength(40, MinimumLength = 5, ErrorMessage = "Email must be between 5 and 25 characters")]
         public string CustomerEmail { get; set; }
 
+        public ICollection<LoanedBook> LoanedBook { get; set; }
+
     }
 }

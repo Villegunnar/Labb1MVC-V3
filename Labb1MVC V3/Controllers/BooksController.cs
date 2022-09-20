@@ -53,10 +53,11 @@ namespace Labb1MVC_V3.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BookId,BookName,BookAuthor")] Book book)
+        public async Task<IActionResult> Create([Bind("BookId,BookName,BookAuthor,Description,NumberOfBooksInStock")] Book book)
         {
             if (ModelState.IsValid)
             {
+                book.NumberOfBooksInStock = book.NumberOfBooksInStock + 1;
                 _context.Add(book);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -85,7 +86,7 @@ namespace Labb1MVC_V3.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BookId,BookName,BookAuthor")] Book book)
+        public async Task<IActionResult> Edit(int id, [Bind("BookId,BookName,BookAuthor,Description,NumberOfBooksInStock")] Book book)
         {
             if (id != book.BookId)
             {

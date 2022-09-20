@@ -17,5 +17,9 @@ namespace Labb1MVC_V3.Models
 
         public string Description { get; set; }
 
+        public int NumberOfBooksInStock { get; set; }
+
+        public ICollection<LoanedBook> LoanedBook { get; set; }
+
     }
 }

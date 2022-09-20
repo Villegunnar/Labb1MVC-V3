@@ -50,9 +50,19 @@ namespace Labb1MVC_V3.Controllers
                 return NotFound();
             }
 
+           
+
+            var customer = _context.Loan.Include(l => l.Book).Include(c => c.Customer).Where(l => l.Customer.CustomerId == id);
+
+            var customer1 = _context.Customers.Include(x => x.LoanedBook).Where(x => x.CustomerId == id);
+
+            //if (_context.Loan.Include(l => l.Book).Include(c => c.Customer).Where(l => l.Customer.CustomerId == id).Where(x=> x.LoanedBookId == null)
+            //{
+
+            //}
 
 
-            var customer = _context.Loan.Include(l => l.Book).Where(l => l.Customer.CustomerId == id);
+
 
 
 
@@ -75,6 +85,7 @@ namespace Labb1MVC_V3.Controllers
             {
                 return NotFound();
             }
+
 
             return View(await customer.ToListAsync());
         }

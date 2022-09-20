@@ -30,7 +30,8 @@ namespace Labb1MVC_V3.Models
                 .RuleFor(m => m.BookId, f => BookIds++)
                 .RuleFor(m => m.BookName, f => f.Name.Random.Words())
                 .RuleFor(m => m.BookAuthor, f => f.Name.FullName())
-                .RuleFor(m => m.Description, f => f.Lorem.Paragraph());
+                .RuleFor(m => m.Description, f => f.Lorem.Paragraph())
+                .RuleFor(m => m.NumberOfBooksInStock, f => f.Random.Number(1,7));
 
 
             var custonerIds = 1;

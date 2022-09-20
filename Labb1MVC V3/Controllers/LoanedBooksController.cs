@@ -62,12 +62,29 @@ namespace Labb1MVC_V3.Controllers
         {
             if (ModelState.IsValid)
             {
+
+                var bookstock = _context.Books.FirstOrDefault(x => x.BookId == loanedBook.BookId);
+
+                if (bookstock.NumberOfBooksInStock == 0)
+                {
+                    return RedirectToAction(nameof(Create));
+                }
+                bookstock.NumberOfBooksInStock--;
+
+              
+
+
                 _context.Add(loanedBook);
                 await _context.SaveChangesAsync();
+              
+              
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BookId"] = new SelectList(_context.Books, "BookId", "BookName", loanedBook.BookId);
-            ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerFName", loanedBook.CustomerId);
+
+            
+
+                      ViewData["CustomerId"] = new SelectList(_context.Customers, "CustomerId", "CustomerFName", loanedBook.CustomerId);
             return View(loanedBook);
         }
 
